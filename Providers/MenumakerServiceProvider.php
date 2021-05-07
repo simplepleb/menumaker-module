@@ -73,10 +73,17 @@ class MenumakerServiceProvider extends ServiceProvider
         $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
 
         $sourcePath = module_path($this->moduleName, 'Resources/views');
+        $assetPath = module_path($this->moduleName, 'Resources/public');
 
         $this->publishes([
             $sourcePath => $viewPath
         ], ['views', $this->moduleNameLower . '-module-views']);
+
+
+        $this->publishes([
+            $assetPath => public_path('vendor/simplepleb/'. $this->moduleNameLower),
+        ], 'menumaker');
+
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }

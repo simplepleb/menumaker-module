@@ -21,7 +21,7 @@
 @push ('after-styles')
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="{{asset('vendor/simplepleb/style.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/simplepleb/menumaker/style.css')}}" rel="stylesheet">
 @endpush
 
 @push ('after-scripts')
@@ -55,7 +55,7 @@
             }
         });
     </script>
-    <script type="text/javascript" src="{{asset('vendor/simplepleb/scripts.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/simplepleb/scripts2.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/simplepleb/menu.js')}}?id={{ time() }}"></script>
+    <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/scripts.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/scripts2.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/menu.js')}}?id={{ time() }}"></script>
 @endpush

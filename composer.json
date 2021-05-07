@@ -21,6 +21,16 @@
             }
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "...",
+            "php artisan vendor:publish --tag=menumaker --force"
+        ],
+        "post-update-cmd": [
+            "...",
+            "php artisan vendor:publish --tag=menumaker --force"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Modules\\Menumaker\\": ""
