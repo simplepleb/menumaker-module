@@ -1,0 +1,13 @@
+{
+    "name": "Menumaker",
+    "alias": "menumaker",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Menumaker\\Providers\\MenumakerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

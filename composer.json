@@ -1,0 +1,29 @@
+{
+    "name": "simplepleb/menumaker-module",
+    "type": "laravel-module",
+    "description": "Dynamic menu builder and generator",
+    "authors": [
+        {
+            "name": "SimplePleb",
+            "email": "plebeian.tribune@protonmail.com"
+        }
+    ],
+    "require": {
+        "lavary/laravel-menu": "^1.7"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Menumaker\\Providers\\MenumakerServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Menumaker\\": ""
+        }
+    }
+}
