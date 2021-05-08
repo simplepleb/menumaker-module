@@ -1,7 +1,7 @@
 # menumaker-module
 A Menu Builder and Manager Module for Laravel
 
-[![Foo](https://xscode.com/assets/promo-banner.svg)](https://xscode.com/simplepleb/modulemanager-module)
+[![Foo](https://xscode.com/assets/promo-banner.svg)](https://xscode.com/simplepleb/menumaker-module)
 
 Build any menu and have access to it globally to use in any view. Use a drag and drop interface to arrange and create menu items as needed. An optional 'Role' selector is used if the Laravel project has Roles and Permissions (spatie/laravel-permission) and makes complete use of Laravel Menu (lavary/laravel-menu).
 
