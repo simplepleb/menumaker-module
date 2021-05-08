@@ -2,7 +2,7 @@
     "name": "simplepleb/menumaker-module",
     "type": "laravel-module",
     "description": "Dynamic menu builder and generator",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "license": ["GPL-3.0-or-later"],
     "authors": [
         {
@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "lavary/laravel-menu": "^1.7"
+        "lavary/laravel-menu": "^1.7",
+        "nwidart/laravel-modules": "^8.0"
     },
     "extra": {
         "laravel": {
