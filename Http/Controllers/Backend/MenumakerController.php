@@ -128,9 +128,9 @@ class MenumakerController extends Controller
                 $menuitem->label = $value['label'];
                 $menuitem->link = $value['link'];
                 $menuitem->class = $value['class'];
-                /*if (config('menu.use_roles')) {
+                if (config('menumaker.use_roles')) {
                     $menuitem->role_id = $value['role_id'];
-                }*/
+                }
                 $menuitem->save();
             }
         } else {
@@ -138,9 +138,9 @@ class MenumakerController extends Controller
             $menuitem->label = request()->input("label");
             $menuitem->link = request()->input("url");
             $menuitem->class = request()->input("clases");
-            /*if (config('menu.use_roles')) {
+            if (config('menumaker.use_roles')) {
                 $menuitem->role_id = request()->input("role_id");
-            }*/
+            }
             $menuitem->save();
         }
     }
@@ -153,9 +153,9 @@ class MenumakerController extends Controller
         $menuitem->link = request()->input("linkmenu");
         $menuitem->unique_name = slug_format(request()->input("labelmenu"));
         $menuitem->parameters = '{}';
-        /*if (config('menu.use_roles')) {
+        if (config('menu.use_roles')) {
             $menuitem->role_id = request()->input("role_id");
-        }*/
+        }
         $menuitem->menu_id = request()->input("menu_id");
         $menuitem->sort = MenuMakerItem::getNextSortRoot(request()->input("menu_id"));
         $menuitem->save();
@@ -179,9 +179,9 @@ class MenumakerController extends Controller
                 $menuitem->parent_id = $parent;
                 $menuitem->sort = $value["sort"];
                 $menuitem->depth = $value["depth"];
-                /*if (config('menu.use_roles')) {
+                if (config('menu.use_roles')) {
                     $menuitem->role_id = request()->input("role_id");
-                }*/
+                }
                 $menuitem->save();
             }
         }
