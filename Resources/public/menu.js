@@ -40,7 +40,7 @@ function addcustommenu() {
 		data : {
 			labelmenu : $("#custom-menu-item-name").val(),
 			linkmenu : $("#custom-menu-item-url").val(),
-			// rolemenu : $("#custom-menu-item-role").val(),
+			role_id : $("#custom-menu-item-role").val(),
 			menu_id : $("#menu_id").val()
 		},
 
@@ -63,9 +63,9 @@ function updateitem(id = 0) {
 		var clases = $("#clases_menu_" + id).val()
 		var url = $("#url_menu_" + id).val()
 		var role_id = 0
-		/*if($("#role_menu_" + id).length  ) {
+		if($("#role_menu_" + id).length  ) {
 			 role_id = $("#role_menu_" + id).val()
-		}*/
+		}
 
 		var data = {
 			label : label,
@@ -139,7 +139,27 @@ function actualizarmenu() {
 }
 
 function deleteitem(id) {
+
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	$.ajax({
+        type: 'POST',
+        url: deleteitemmenur,
+        data: {_token: CSRF_TOKEN, id : id },
+        dataType: 'JSON',
+        success: function (results) {
+            if (!results.error) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+    });
+
+
+
+
+
+	/*$.ajax({
 		dataType : "json",
 		data : {
 
@@ -151,10 +171,45 @@ function deleteitem(id) {
 		success : function(response) {
 
 		}
-	});
+	});*/
 }
 
 function deletemenu() {
+    $("#spincustomu2").show();
+    swal({
+        title: "Delete Item?",
+        text: "Are you sure you want to delete, this cannot be undone",
+        type: "warning",
+        showCancelButton: !0,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: !0
+    }).then(function (e) {
+        if (e.value === true) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                type: 'POST',
+                url: deletemenugr,
+                data: {_token: CSRF_TOKEN, id : $("#menu_id").val() },
+                dataType: 'JSON',
+                success: function (results) {
+                    if (!results.error) {
+                        //alert(results.resp);
+                        window.location = menuwr
+                    }else{
+                        alert(results.resp)
+                    }
+                }
+            });
+        } else {
+            e.dismiss;
+        }
+    }, function (dismiss) {
+        return false;
+    })
+}
+
+function deletemenu_old() {
 
 	var r = confirm("Do you want to delete this menu ?");
 	if (r == true) {
