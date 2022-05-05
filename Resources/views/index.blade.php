@@ -1,36 +1,61 @@
-@extends('backend.layouts.app')
+@extends('layouts.app', [
+    'title' => __('Menu Builder'),
+    'parentSection' => 'app-settings',
+    'elementName' => 'menu-builder'
+])
 
-@section('title')Menu Builder @stop
+@section('title'){{ __('Menu Builder ') }} @stop
+@section('page-title'){{ __('Menu Builder ') }}@stop
 
-@section('breadcrumbs')
+{{--@section('breadcrumbs')
     <x-backend-breadcrumbs>
         <x-backend-breadcrumb-item type="active" icon='fas fa-sitemap'>MenuMaker</x-backend-breadcrumb-item>
     </x-backend-breadcrumbs>
-@stop
+@stop--}}
 
 @section('content')
+    @component('layouts.headers.auth')
+        @component('layouts.headers.breadcrumbs')
+            @slot('title')
+                {{ __('Menu Management') }}
+            @endslot
 
+            <li class="breadcrumb-item"><a href="{{ route('backend.menumaker.index') }}">{{ __('Menu Builder') }}</a></li>
+            {{--<li class="breadcrumb-item active" aria-current="page">{{ __('List') }}</li>--}}
+        @endcomponent
+    @endcomponent
+
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col">
+                <div class="card p-3">
     <?php
     $currentUrl = url()->current();
     ?>
-
     {!! (new Modules\Menumaker\Http\Controllers\Backend\MenuBuilderController)->render() !!}
+
+                </div>
+            </div>
+        </div>
+        @include('layouts.footers.auth')
+    </div>
+
 
 @endsection
 
-@push ('after-styles')
+@push ('css-page')
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="{{asset('vendor/simplepleb/menumaker/style.css')}}" rel="stylesheet">
 @endpush
 
-@push ('after-scripts')
+@push ('js')
 
     <script>
         var menus = {
             "oneThemeLocationNoMenus" : "",
             "moveUp" : "Move up",
-            "moveDown" : "Mover down",
+            "moveDown" : "Move down",
             "moveToTop" : "Move top",
             "moveUnder" : "Move under of %s",
             "moveOutFrom" : "Out from under  %s",
@@ -57,5 +82,5 @@
     </script>
     <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/scripts.js')}}"></script>
     <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/scripts2.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/menu.js')}}?id={{ time() }}"></script>
+    <script type="text/javascript" src="{{asset('vendor/simplepleb/menumaker/menu.js')}}?id={{ time() }}&v={{time()}}"></script>
 @endpush

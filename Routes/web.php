@@ -20,7 +20,7 @@ Route::group(['prefix' => '/api/menu/'], function () {
 });
 
 
-Route::group(['namespace' => '\Modules\Menumaker\Http\Controllers\Backend', 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_backend'], 'prefix' => 'admin'], function () {
+Route::group(['namespace' => '\Modules\Menumaker\Http\Controllers\Backend', 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:edit menus'], 'prefix' => 'app'], function () {
     /*
     * These routes need view-backend permission
     * (good if you want to allow more than one group in the backend,

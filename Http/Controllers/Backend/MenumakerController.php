@@ -13,6 +13,28 @@ use Modules\Menumaker\Entities\MenuMakerItem;
 class MenumakerController extends Controller
 {
     /**
+     * Create Menu for Module
+     */
+    public static function generateModuleMenu()
+    {
+
+        Menu::modify('super_admin', function ($menu) {
+            if (\Auth::user()->can('edit_settings')) {
+
+                $menu->add([
+                    'url' => route('backend.menumaker.index'),
+                    'title' => __('Menu Builder'),
+                    'icon' => 'ni ni-briefcase-24 text-primary'
+                ])/*->order(2)*/
+                ;
+
+            }
+
+        });
+
+    }
+
+    /**
      * Display a listing of the resource.
      * @return Renderable
      */

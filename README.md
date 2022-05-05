@@ -1,6 +1,10 @@
 # menumaker-module
 A Menu Builder and Manager Module for Laravel
 
+Don't forget to publish the public resources
+
+```php artisan vendor:publish --tag=menumaker```
+
 [![Foo](https://xscode.com/assets/promo-banner.svg)](https://xscode.com/simplepleb/menumaker-module)
 
 [![Latest Stable Version](https://poser.pugx.org/simplepleb/menumaker-module/v)](//packagist.org/packages/simplepleb/menumaker-module) [![Total Downloads](https://poser.pugx.org/simplepleb/menumaker-module/downloads)](//packagist.org/packages/simplepleb/menumaker-module) [![Latest Unstable Version](https://poser.pugx.org/simplepleb/menumaker-module/v/unstable)](//packagist.org/packages/simplepleb/menumaker-module) [![License](https://poser.pugx.org/simplepleb/menumaker-module/license)](//packagist.org/packages/simplepleb/menumaker-module)

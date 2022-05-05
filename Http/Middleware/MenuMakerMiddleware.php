@@ -33,39 +33,40 @@ class MenuMakerMiddleware
 
         if( !Auth::check() ) {
             $cached_menu = unserialize(Cache::get('menu_maker'));
-        }
 
-        elseif( $cached_menu == false ) {
+        }
+        if(!$cached_menu) {
             $this->makeMenus();
             return $next($request);
         }
 
-        if( $cached_menu !== false ) {
+        //if( $cached_menu !== false ) {
             $app = App::getFacadeApplication();
-
+// dd('Not False');
             $app->instance('menu',null);
             $app['menu'] = $cached_menu;
             // dd( serialize($app['menu']),'WHERE' );
             return $next($request);
-        }
+        //}
 
-        $this->makeMenus();
+        // $this->makeMenus();
 
-        return $next($request);
+        //return $next($request);
     }
 
     public function makeMenus()
     {
         $menu_records = MenuMaker::with('items')->get();
-// dd( $menu_records);
+// dd('MenuMaker', $menu_records);
         foreach ($menu_records as $menu_record) {
-            $menu = \Menu::make($menu_record->machine_name,function($menu){});
+            $menu = Menu::make($menu_record->machine_name,function($menu){});
 
             $items = $menu_record->items->filter(function ($value, $key) {
                 return $value->parent_id == null;
             })->sortBy('sort');
 
             $this->addItems($menu, $items, $menu_record->items->sortBy('sort'));
+
         }
 
         $app = App::getFacadeApplication();

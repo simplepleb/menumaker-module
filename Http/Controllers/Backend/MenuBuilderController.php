@@ -33,6 +33,11 @@ class MenuBuilderController extends Controller
                 $data['role_pk'] = config('menumaker.roles_pk');
                 $data['role_title_field'] = config('menumaker.roles_title_field');
             }
+            else{
+                $data['roles'] = array();
+                $data['role_pk'] = null;
+                $data['role_title_field'] = null;
+            }
             return view('menumaker::menu-html', $data);
         }
 

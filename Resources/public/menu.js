@@ -129,7 +129,8 @@ function actualizarmenu() {
 		},
 		success : function(response) {
 
-			console.log("aqu llega")
+			// console.log("aqu llega")
+            toaster_msg('Success', 'Menu Updated', 'success')
 
 		},
 		complete: function(){
@@ -274,8 +275,7 @@ function createnewmenu() {
 }
 
 
-function insertParam(key, value)
-{
+function insertParam(key, value) {
     key = encodeURI(key); value = encodeURI(value);
 
     var kvp = document.location.search.substr(1).split('&');
