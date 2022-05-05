@@ -5,6 +5,7 @@ namespace Modules\Menumaker\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Menumaker\Http\Middleware\MenuMakerMiddleware;
+use Menu;
 
 class MenumakerServiceProvider extends ServiceProvider
 {
