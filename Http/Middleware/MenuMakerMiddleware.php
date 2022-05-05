@@ -72,13 +72,13 @@ class MenuMakerMiddleware
         $app = App::getFacadeApplication();
 
         if(\Auth::user()) {
-            session(['menu_maker' => serialize($app['menu'])] );
-            \Session::set('menu_maker',  serialize($app['menu']));
+            session(['menu_maker' => serialize($app['Menu'])] );
+            \Session::set('menu_maker',  serialize($app['Menu']));
         }
         else {
-            \Cache::forever('menu_maker', serialize($app['menu']));
+            \Cache::forever('menu_maker', serialize($app['Menu']));
         }
-        //dd( session('menu_maker'), 'THERE' );
+
     }
 
     private function addItems($to, $items, $all_items)
