@@ -31,7 +31,7 @@ class CreateMenuMakerTables extends Migration
             $table->string('unique_name')->nullable();
             $table->integer('weight')->nullable();
             $table->string('menu_text')->nullable();
-            $table->json('parameters');
+            $table->json('parameters')->nullable();
             $table->json('meta_data')->nullable();
 
 

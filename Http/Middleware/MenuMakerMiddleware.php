@@ -32,26 +32,26 @@ class MenuMakerMiddleware
         $cached_menu = unserialize(\Session::get('menu_maker'));
 
         if( !Auth::check() ) {
-            $cached_menu = unserialize(Cache::get('menu_maker'));
-
+            $cached_menu = unserialize(\Cache::get('menu_maker'));
         }
-        if(!$cached_menu) {
+
+        elseif( $cached_menu == false ) {
             $this->makeMenus();
             return $next($request);
         }
 
-        //if( $cached_menu !== false ) {
+        if( $cached_menu !== false ) {
             $app = App::getFacadeApplication();
-// dd('Not False');
+
             $app->instance('menu',null);
             $app['menu'] = $cached_menu;
             // dd( serialize($app['menu']),'WHERE' );
             return $next($request);
-        //}
+        }
 
-        // $this->makeMenus();
+        $this->makeMenus();
 
-        //return $next($request);
+        return $next($request);
     }
 
     public function makeMenus()
