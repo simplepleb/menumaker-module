@@ -56,28 +56,31 @@ class MenuMakerMiddleware
 
     public function makeMenus()
     {
-        $menu_records = MenuMaker::with('items')->get();
+        if ( !app()->runningInConsole()) {
+            $menu_records = MenuMaker::with('items')->get();
 // dd('MenuMaker', $menu_records);
-        foreach ($menu_records as $menu_record) {
-            $menu = Menu::make($menu_record->machine_name,function($menu){});
+            foreach ($menu_records as $menu_record) {
+                $menu = Menu::make($menu_record->machine_name,function($menu){});
 
-            $items = $menu_record->items->filter(function ($value, $key) {
-                return $value->parent_id == null;
-            })->sortBy('sort');
+                $items = $menu_record->items->filter(function ($value, $key) {
+                    return $value->parent_id == null;
+                })->sortBy('sort');
 
-            $this->addItems($menu, $items, $menu_record->items->sortBy('sort'));
+                $this->addItems($menu, $items, $menu_record->items->sortBy('sort'));
 
+            }
+
+            $app = App::getFacadeApplication();
+
+            if(\Auth::user()) {
+                session(['menu_maker' => serialize($app['Menu'])] );
+                \Session::set('menu_maker',  serialize($app['Menu']));
+            }
+            else {
+                \Cache::forever('menu_maker', serialize($app['Menu']));
+            }
         }
 
-        $app = App::getFacadeApplication();
-
-        if(\Auth::user()) {
-            session(['menu_maker' => serialize($app['Menu'])] );
-            \Session::set('menu_maker',  serialize($app['Menu']));
-        }
-        else {
-            \Cache::forever('menu_maker', serialize($app['Menu']));
-        }
 
     }
 
