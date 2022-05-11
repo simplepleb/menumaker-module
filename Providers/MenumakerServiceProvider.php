@@ -4,6 +4,8 @@ namespace Modules\Menumaker\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Menumaker\Entities\MenuMaker;
+use Modules\Menumaker\Entities\MenuMakerItem;
 use Modules\Menumaker\Http\Middleware\MenuMakerMiddleware;
 use Menu;
 
@@ -36,6 +38,33 @@ class MenumakerServiceProvider extends ServiceProvider
         $kernel->pushMiddleware('Modules\Menumaker\Http\Middleware\GenerateMenus');
         $kernel->pushMiddleware('Modules\Menumaker\Http\Middleware\MenuMakerMiddleware');
 
+        $this->moduleMenu();
+
+
+    }
+
+    private function moduleMenu(){
+        if ( !app()->runningInConsole() ) {
+            if( \Module::has('Menumaker') ) {
+                $menu = MenuMaker::where('machine_name',$this->moduleNameLower.'-menu' )->count();
+                if( $menu == 0 ){
+                    $params = '"{}"';
+                    $menuId = MenuMaker::create([
+                        'machine_name' => $this->moduleNameLower.'-menu',
+                        'display_name'  => $this->moduleName . ' Menu',
+                        'description'   => 'Feature Menu'
+                    ]);
+                    $itemB = MenuMakerItem::create([
+                        'menu_id'   => $menuId->id,
+                        'unique_name'   => $this->moduleNameLower."-home",
+                        'label' => "$this->moduleName",
+                        'parameters' => $params,
+                        'link'  =>  url('/')."/app/$this->moduleNameLower",
+                    ]);
+
+                }
+            }
+        }
 
     }
 

@@ -111,10 +111,16 @@ class MenuMakerMiddleware
                 }
             }
             if($can_access) {
-                // dd( $item, 'HERE' );
-                $new_item = $to->add($item->label, $item->link)->nickname($item->label.rand(0,5000));
-                //dd( $new_item );
-                $new_item->data($item->meta_data);
+
+                $new_item = $to->add($item->label, $item->link)
+                    ->nickname($item->label.rand(0,5000))
+                    ->data([$item->meta_data]);
+
+                // if( $item->class )
+                    $new_item->link->attr(['class' => 'nav-link']);;
+
+                //$new_item->data($item->meta_data); // removed 2022 DS
+
                 $this->addItems($new_item, $sub_items, $all_items);
             }
         }

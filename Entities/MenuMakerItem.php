@@ -30,7 +30,9 @@ class MenuMakerItem extends Model
         'menu_text',
         'parameters',
         'divide',
-        'meta_data'
+        'meta_data',
+        'label',
+        'link'
     ];
 
     public function menu()
